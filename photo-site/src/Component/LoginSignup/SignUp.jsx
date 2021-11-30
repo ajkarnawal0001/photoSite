@@ -63,7 +63,11 @@ export const SignUp = ({handleSign}) => {
     // console.log(payload);
         if(data.username===payload.username&&data.password===payload.password){
             SetData("key","123")
+            let key = GetData("key")
+            if(key==="123"){
+              console.log("KEY");
             handleSign(false)
+            }
         }else{
             alert("Invalid Cradentials")
         }

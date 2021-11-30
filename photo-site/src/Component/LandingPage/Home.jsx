@@ -8,6 +8,7 @@ import Modal from 'react-modal'
 import { customStyles, ModelImage } from './ModelStyle'
 import { RightCarousel } from '../Carousel/RightCarousel'
 import { LoginPage } from '../LoginSignup/LoginPage'
+import {SetData} from "../Utils/LocalStorage"
 
 export const Home = () => {
     const [page,setPage] = useState(1) 
@@ -82,6 +83,7 @@ export const Home = () => {
     const handleLogout=(value)=>{
         setShow(value)
         setscroll(value)
+        SetData("key","")
         console.log(value,"logout");
     }
     return (
@@ -94,14 +96,13 @@ export const Home = () => {
 
             <Search handleSearch={handleSearch} handleLogout={handleLogout}/>
             <RightCarousel className="carousel"/>
-            <div className="grid js-grid hover14 column">
+            <div className="js-grid hover14 column masonry" >
             {(photo&&(
                 photo.map((item,i)=>(
                     <div key={i} onClick={()=>openModel(item)} className="item">
                     <figure>
-                    <img src={item.urls.small} alt="" />
+                    <GridImage src={item.urls.small} alt="" />
                         </figure>           
-                        <span>Click to preview</span>      
                 </div>
                 ))
                 ))}
@@ -112,13 +113,10 @@ export const Home = () => {
 const Cont = styled.div`
     width:100%;
     margin:2rem auto;
-    & .grid{
-        display: grid;
-        /* grid-template-columns: auto auto auto auto; */
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        grid-gap: 35px;
-    }
+
 `
-
-
-
+const GridImage = styled.img`
+    object-fit:cover;
+    width:100%;
+    height:100%;
+`
