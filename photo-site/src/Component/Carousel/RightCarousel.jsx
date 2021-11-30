@@ -1,11 +1,12 @@
 import React from "react";
 import CarouselSlider from "react-carousel-slider";
+import styled from "styled-components";
 let autoSliding = {
   items: [
     {
       id:1,
       imgSrc:
-        "https://images.unsplash.com/photo-1456926631375-92c8ce872def?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8OHx8fGVufDB8fHx8&w=1000&q=80",
+        "https://wallpaperaccess.com/full/1437584.jpg",
     },
     {
       id:2,
@@ -19,7 +20,7 @@ let autoSliding = {
     },
     {id:4,
       imgSrc:
-        "https://www.cicnews.com/wp-content/uploads/2020/04/20200408onlinestudy.jpg",
+        "https://www.apple.com/newsroom/images/product/iphone/standard/Apple_announce-iphone12pro_10132020.jpg.landing-big_2x.jpg",
     },
   ],
 };
@@ -31,21 +32,14 @@ export const RightCarousel = () => {
   };
   let sliderBoxStyle = {
     height: "200px",
-    width: "700px",
     background: "transparent",
-    // border:"1px solid red"
   };
   let itemsStyle = {
-    width: "100%",
     objectFit:"cover"
-    // height:"20%",
   };
-  let accEleSetting;
-
-  let mobileRegx = /Mobi/;
-  if (mobileRegx.test(navigator.userAgent)) {
-    accEleSetting.button = false;
-  }
+  // let mobileRegx = /Mobi/;
+  // if (mobileRegx.test(navigator.userAgent)) {
+  // }
 
   let buttonSetting = {
     placeOn: "middle-inside",
@@ -68,11 +62,8 @@ export const RightCarousel = () => {
     },
   };
 
-  const typeSearch=(e)=>{
-    console.log(e.target);
-  }
   return (
-    <div onClick={(e)=>(typeSearch(e))}>
+    <Crs>
     <CarouselSlider
       slideItems={autoSliding.items}
       manner={manner}
@@ -80,6 +71,11 @@ export const RightCarousel = () => {
       sliderBoxStyle={sliderBoxStyle}
       itemsStyle={itemsStyle}
     />
-    </div>
+    </Crs>
   );
 };
+
+const Crs = styled.div`
+  max-width:70%;
+  margin:1rem auto;
+`

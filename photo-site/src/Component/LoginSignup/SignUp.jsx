@@ -1,13 +1,18 @@
-import axios from 'axios';
 import React, { useState } from 'react'
 import { GetData, SetData } from '../Utils/LocalStorage';
-import { useHistory } from "react-router";
 import * as Components from "./LoginComponents";
 import { TextField } from "@material-ui/core";
-import { useDispatch } from "react-redux";
+import { shallowEqual, useDispatch, useSelector } from "react-redux";
+import { updateAction } from '../Redux/action';
 
 export const SignUp = ({handleSign}) => {
     const [signIn, toggle] = React.useState(true);
+    const dispatch = useDispatch()
+
+    const { data, key, isLoading, isError } = useSelector(
+        (state) => state.updateReducer,
+        shallowEqual
+    );
     const [user, setUser] = useState({
         username: "",
         email: "",
@@ -32,6 +37,8 @@ export const SignUp = ({handleSign}) => {
       number,
     };
         SetData("signupData",payload)
+        dispatch(updateAction(payload))
+        
     }
 
     // login
@@ -47,18 +54,18 @@ export const SignUp = ({handleSign}) => {
   const submitLogin = async (e) => {
     e.preventDefault();
     let data = GetData("signupData")
+    console.log(data,"data");
     const { usernameLogin, passwordLogin } = userLogin;
     const payload = {
       username: usernameLogin,
       password: passwordLogin,
     };
-    console.log(payload);
+    // console.log(payload);
         if(data.username===payload.username&&data.password===payload.password){
             SetData("key","123")
             handleSign(false)
         }else{
-
-            console.log("sorry");
+            alert("Invalid Cradentials")
         }
 }
    

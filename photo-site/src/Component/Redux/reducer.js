@@ -1,40 +1,34 @@
-import { GET_PHOTO_DATA, GET_PHOTO_FAILURE, GET_PHOTO_REQUEST } from "./actionType"
+import { UPDATE_Logged_DATA, UPDATE_Logged_FAILURE, UPDATE_Logged_REQUEST } from "./actionType"
 
 const initState = {
     data:[],
+    key:"",
     isLoading: false,
     isError: false,
-    page: 1,
-    query: null
 }
 
-export const PhotoReducer = (state = initState,{type,payload,currPage,query})=>{
+export const updateReducer = (state = initState,{type,payload,key})=>{
     switch(type){
-        case GET_PHOTO_DATA: {
+        case UPDATE_Logged_DATA: {
             return{
                 ...state,
                 data:payload,
+                key:key,
                 isLoading:false,
-                page:currPage,
-                query:query
             }
         }
-        case GET_PHOTO_REQUEST:{
+        case UPDATE_Logged_REQUEST:{
             return {
                 ...state,
                 isLoading:true,
                 isError:false,
-                page:currPage,
-                query:query
             }
         }
-        case GET_PHOTO_FAILURE: {
+        case UPDATE_Logged_FAILURE: {
             return{
                 ...state,
                 isLoading:false,
                 isError:payload,
-                page:currPage,
-                query:query
             }
         }
         default:

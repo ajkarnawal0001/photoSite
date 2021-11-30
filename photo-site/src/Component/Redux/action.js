@@ -1,46 +1,33 @@
-import { GET_PHOTO_DATA, GET_PHOTO_FAILURE, GET_PHOTO_REQUEST, MyId, randomUrl, searchUrl } from "./actionType"
-import axios from 'axios'
-const photoRequest = () =>{
+
+import { UPDATE_Logged_DATA, UPDATE_Logged_FAILURE, UPDATE_Logged_REQUEST } from './actionType'
+const updateRequest = () =>{
     return {
-        type:GET_PHOTO_REQUEST
+        type:UPDATE_Logged_REQUEST
     }
 }
-const photoSuccess = (payload,page,query)=>{
+const updateSuccess = (payload,key)=>{
     return{
-        type:GET_PHOTO_DATA,
+        type:UPDATE_Logged_DATA,
         payload:payload,
-        page,
-        query
+        key:"123"
     }
 }
-const photoFailure = (err,page,query) =>{
+const updateFailure = (err,page,query) =>{
     return{
-        type:GET_PHOTO_FAILURE,
+        type:UPDATE_Logged_FAILURE,
         payload:err,
         page,
         query
     }
 }
 
-export const getAllPhoto =  (page,query) => dispatch=>{
-    
-    let url;
-    const requstAction = photoRequest()
-    dispatch(requstAction)
-    
-    if(query!=null){
-        url = `${searchUrl}/${MyId}&page=${page}&query=${query}`
-    }else{
-        url = `${randomUrl}${MyId}&page=${page}`
-    }
-     axios.get(url)
-     .then((res)=>{
-         console.log(res.data)
-         dispatch(photoSuccess(res.data,page,query))
-     })
-     .catch((err)=>{
-         const failureAction = photoFailure(err,page,query)
-         console.log("aa")
-         dispatch(failureAction)
-     })
+export const updateAction =(payload) =>(dispatch)=>{
+    const requestAction = updateRequest()
+    dispatch(requestAction)
+    const successAction = updateSuccess(payload)
+    dispatch(successAction)
+    const failureAction = updateFailure(payload)
+    dispatch(failureAction)
+
 }
+

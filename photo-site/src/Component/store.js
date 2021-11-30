@@ -1,10 +1,10 @@
 
 import { createStore, applyMiddleware, combineReducers, compose } from "redux";
 import thunk from "redux-thunk";
-import { PhotoReducer } from "./Redux/reducer";
+import { updateReducer } from "./Redux/reducer";
 
 const rootReducer = combineReducers({
-    PhotoReducer
+    updateReducer
 })
 
 const composedEnhancer =

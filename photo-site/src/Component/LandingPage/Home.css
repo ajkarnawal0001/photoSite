@@ -1,3 +1,4 @@
+
 .hover14 figure {
   position: relative;
 }
@@ -31,24 +32,24 @@
 }
 
 /* Circle */
-.hover14:nth-child(2n) figure img {
+.hover14 figure img {
   width: 300px;
   height: auto;
   -webkit-transition: .3s ease-in-out;
   transition: .3s ease-in-out;
   object-fit: cover;
 }
-.hover14:nth-child(2n) figure:hover img {
+.hover14 figure:hover img {
   width: 400px;
 }
 
 
 
-.hover15 figure {
+.hover14 figure {
   position: relative;
   
 }
-.hover15 figure::before {
+.hover14 figure::before {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -63,7 +64,7 @@
   transform: translate(-50%, -50%);
   opacity: 0;
 }
-.hover15 figure:hover::before {
+.hover14 figure:hover::before {
   -webkit-animation: circle .75s;
   animation: circle .75s;
 }

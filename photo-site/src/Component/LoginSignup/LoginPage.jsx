@@ -1,7 +1,5 @@
 import React, { useEffect } from 'react'
-import styled from 'styled-components'
 import { GetData } from '../Utils/LocalStorage'
-import { Form } from './Form'
 import { SignUp } from './SignUp'
 
 export const LoginPage = ({show,handleSign}) => {
@@ -31,9 +29,4 @@ export const LoginPage = ({show,handleSign}) => {
         </>
     )
 }
-
-const Heading = styled.div`
-    font-size:50px;
-    border:5px solid black;
-`
 
